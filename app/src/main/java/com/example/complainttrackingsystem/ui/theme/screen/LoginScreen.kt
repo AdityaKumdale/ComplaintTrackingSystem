@@ -130,9 +130,10 @@ fun LoginScreen(
                     navController = navController,
                     destination = Screen.Home.route,
                     onButtonClicked = {
-                        loginViewModel.onEvent(LoginUIEvent.SignIn)
+                       // loginViewModel.onEvent(LoginUIEvent.SignIn)
                     },
-                    isEnabled = loginViewModel.allValidationsPassed.value
+                    //isEnabled = loginViewModel.allValidationsPassed.value
+                    isEnabled = true
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
