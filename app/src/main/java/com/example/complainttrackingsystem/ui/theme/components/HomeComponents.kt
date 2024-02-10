@@ -43,7 +43,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.complainttrackingsystem.data.newCategory
+import com.example.complainttrackingsystem.navigation.Screen
 
 @Composable
 fun assignedComplaints(modifier: Modifier = Modifier) {
@@ -89,7 +92,9 @@ private fun assignedComplaintsPreview() {
 
 
 @Composable
-fun yourComplaintsCard(){
+fun yourComplaintsCard(
+    navController: NavHostController
+){
     Box (
 
         modifier= Modifier
@@ -113,7 +118,9 @@ fun yourComplaintsCard(){
                     )
             )
             ClickableText(text = AnnotatedString("See all"),
-                onClick = {},
+                onClick = {
+                    navController.navigate(Screen.SeeAll.route)
+                },
                 style = TextStyle(
                     color = Color(0xff404969),
                     fontSize = 14.sp,
@@ -200,14 +207,14 @@ fun yourComplaintsCard(){
     }
 }
 
-@Preview(widthDp = 362, heightDp = 153)
-@Composable
-private fun yourComplaintsCardPreview() {
-    yourComplaintsCard()
-}
+//@Preview(widthDp = 362, heightDp = 153)
+//@Composable
+//private fun yourComplaintsCardPreview() {
+//    yourComplaintsCard()
+//}
 
 @Composable
-fun newComplaintCard(){
+fun newComplaintCard(navController: NavHostController){
     Box (
         modifier= Modifier
             .width(362.dp)
@@ -247,7 +254,7 @@ fun newComplaintCard(){
                 //modifier = Modifier.height(168.dp).offset(55.dp,88.dp)
             ) {
                 items(newComplaintList.size) {
-                    newCategoryItem(it)
+                    newCategoryItem( it, navController )
                 }
             }
         }
@@ -257,36 +264,46 @@ fun newComplaintCard(){
 @Preview(widthDp = 362, heightDp = 271)
 @Composable
 private fun newComplaintCardPreview() {
-    newComplaintCard()
+    newComplaintCard(navController = rememberNavController())
 }
 
 val newComplaintList= listOf(
     newCategory(
         icon = Icons.Rounded.StarHalf,
         name = "Biomedical",
-        background = Color.LightGray
+        background = Color.LightGray,
+
     ) ,
             newCategory(
         icon = Icons.Rounded.StarHalf,
         name = "IT",
-        background = Color.LightGray
+        background = Color.LightGray,
+
     ),
     newCategory(
             icon = Icons.Rounded.StarHalf,
             name = "Maintainence",
-            background = Color.LightGray
+            background = Color.LightGray,
+
         ),
     newCategory(
             icon = Icons.Rounded.StarHalf,
             name = "Facility",
             background = Color.LightGray
-        )
+        ),
+    newCategory(
+        icon = Icons.Rounded.StarHalf,
+        name = "Facility",
+        background = Color.LightGray
+    )
 )
 
 @Composable
 fun newCategoryItem(
-    index: Int
+    index: Int,
+    navController: NavHostController
 ) {
+    //val navController = rememberNavController()
     val complaint = newComplaintList[index]
     var lastPaddingEnd = 0.dp
 
@@ -297,7 +314,10 @@ fun newCategoryItem(
                 .background(MaterialTheme.colorScheme.secondaryContainer)
                 .width(152.dp)
                 .height(84.dp)
-                .clickable {}
+                .clickable {
+                    val complaint = newComplaintList[index]
+                    navController.navigate(Screen.NewComplaint.route)
+                }
                 .padding(13.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -331,8 +351,10 @@ fun newCategoryItem(
         }
     }
 }
+
+
 @Preview(widthDp = 362, heightDp = 271)
 @Composable
 private fun newCategoryItemPreview() {
-    newCategoryItem(1)
+    newCategoryItem(1, navController = rememberNavController())
 }

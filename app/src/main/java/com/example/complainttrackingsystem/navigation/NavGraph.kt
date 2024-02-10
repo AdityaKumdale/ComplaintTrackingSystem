@@ -5,8 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.complainttrackingsystem.ui.theme.components.SeeAll
 import com.example.complainttrackingsystem.ui.theme.screen.HomeScreen
 import com.example.complainttrackingsystem.ui.theme.screen.LoginScreen
+import com.example.complainttrackingsystem.ui.theme.screen.NewComplaint
 import com.example.complainttrackingsystem.ui.theme.screen.WelcomeScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 
@@ -28,7 +30,13 @@ fun SetupNavGraph(
             LoginScreen(navController = navController)
         }
         composable(route = Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(navController = navController)
+        }
+        composable(route = Screen.SeeAll.route) {
+            SeeAll( )
+        }
+        composable(route = Screen.NewComplaint.route ){
+            NewComplaint()
         }
 
     }

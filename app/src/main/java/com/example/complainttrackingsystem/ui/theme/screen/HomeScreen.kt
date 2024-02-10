@@ -9,6 +9,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.complainttrackingsystem.ui.theme.components.assignedComplaints
 import com.example.complainttrackingsystem.ui.theme.components.SearchBarM3
 import com.example.complainttrackingsystem.ui.theme.components.newComplaintCard
@@ -16,23 +19,22 @@ import com.example.complainttrackingsystem.ui.theme.components.yourComplaintsCar
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavHostController
+) {
 
     Column(
         modifier = Modifier
             .fillMaxWidth(),
-          //  .padding(start = 16.dp, end = 16.dp),
-        //verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-//            .padding(padding)
     ) {
         SearchBarM3()
         Spacer(modifier = Modifier.height(16.dp))
         assignedComplaints(Modifier)
         Spacer(modifier = Modifier.height(36.dp))
-        yourComplaintsCard()
+        yourComplaintsCard(navController = navController)
         Spacer(modifier = Modifier.height(36.dp))
-        newComplaintCard()
+        newComplaintCard(navController)
     }
 
 
@@ -54,5 +56,5 @@ fun HomeScreen() {
 @Composable
 @Preview(widthDp = 462, heightDp = 1153,showBackground = true)
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(navController = rememberNavController())
 }
