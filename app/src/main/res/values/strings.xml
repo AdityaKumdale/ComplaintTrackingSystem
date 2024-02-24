@@ -19,8 +19,8 @@
     <string name="terms_and_conditions_header">Term of Use</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
-    <string name="login_emp">Login as Employee</string>
-    <string name="login_admin">Login as Admin</string>
+    <string name="login_emp">Sign IN</string>
+    <string name="login_admin">Sign UP</string>
     <string name="or">or</string>
     <string name="go_to_login">Already have an account? Login</string>
 

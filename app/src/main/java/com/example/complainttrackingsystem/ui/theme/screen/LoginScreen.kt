@@ -85,7 +85,7 @@ fun LoginScreen(
 
             MyTextFieldComponent(labelValue = stringResource(id = R.string.name),
                 painterResource(id = R.drawable.message),
-                value = state.signInUsername,
+                value = state.Username,
                 onTextChanged = {
                     loginViewModel.onEvent(LoginUIEvent.OnNameChanged(it))
                 },
@@ -95,7 +95,7 @@ fun LoginScreen(
             PasswordTextFieldComponent(
                 labelValue = stringResource(id = R.string.password),
                 painterResource(id = R.drawable.lock),
-                value = state.signInPassword,
+                value = state.Password,
                 onTextSelected = {
                     loginViewModel.onEvent(LoginUIEvent.OnPasswordChanged(it))
                 },
@@ -145,7 +145,7 @@ fun LoginScreen(
                     navController = navController,
                  destination = Screen.Home.route,
                     onButtonClicked = {
-                       loginViewModel.onEvent(LoginUIEvent.SignIn)
+                       loginViewModel.onEvent(LoginUIEvent.SignUp)
                     },
                     isEnabled = loginViewModel.allValidationsPassed.value
                 )

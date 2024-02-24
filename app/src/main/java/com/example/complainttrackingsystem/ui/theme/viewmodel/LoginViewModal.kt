@@ -38,18 +38,22 @@ class LoginViewModal @Inject constructor(
         when (event) {
             is LoginUIEvent.OnNameChanged -> {
                 state = state.copy(
-                    signInUsername = event.username
+                    Username = event.username
                 )
             }
 
             is LoginUIEvent.OnPasswordChanged -> {
                 state = state.copy(
-                    signInPassword = event.password
+                    Password = event.password
                 )
             }
 
             is LoginUIEvent.SignIn -> {
                 signIn()
+            }
+
+            is LoginUIEvent.SignUp ->{
+                signUp()
             }
 
             else -> {}
@@ -59,12 +63,12 @@ class LoginViewModal @Inject constructor(
 
     private fun validateLoginUIDataWithRules() {
         val emailResult = Validator.validatename(
-            name = state.signInUsername
+            name = state.Username
         )
 
 
         val passwordResult = Validator.validatePassword(
-            password = state.signInPassword
+            password = state.Password
         )
 
         state = state.copy(
@@ -75,13 +79,24 @@ class LoginViewModal @Inject constructor(
         allValidationsPassed.value = emailResult.status && passwordResult.status
     }
 
+    private fun signUp() {
+        viewModelScope.launch {
+            state = state.copy(isLoading = true)
+            val result = repository.signUp(
+                username = state.Username,
+                password = state.Password
+            )
+            resultChannel.send(result)
+            state = state.copy(isLoading = false)
+        }
+    }
 
     private fun signIn() {
         viewModelScope.launch {
             state = state.copy(isLoading = true)
             val result = repository.signIn(
-                username = state.signInUsername,
-                password = state.signInPassword
+                username = state.Username,
+                password = state.Password
             )
             resultChannel.send(result)
             state = state.copy(isLoading = false)

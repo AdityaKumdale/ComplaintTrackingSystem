@@ -4,6 +4,6 @@ sealed class LoginUIEvent {
 
         data class OnNameChanged(val username:String): LoginUIEvent()
         data class OnPasswordChanged(val password: String) : LoginUIEvent()
-
+        object SignUp: LoginUIEvent()
         object SignIn: LoginUIEvent()
 }

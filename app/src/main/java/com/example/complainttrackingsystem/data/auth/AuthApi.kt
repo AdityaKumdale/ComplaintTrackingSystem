@@ -7,6 +7,11 @@ import retrofit2.http.POST
 
 interface AuthApi {
 
+    @POST("signup")
+    suspend fun signUp(
+        @Body request: AuthRequest
+    )
+
     @POST("signin")   //dummy requests
     suspend fun signIn(
         @Body request: AuthRequest
