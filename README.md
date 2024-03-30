@@ -1,5 +1,5 @@
 <div align="center">
-# Complaint Tracking System
+ Complaint Tracking System
 </div>
 
 This is app for raising various complaints inside a hospital and tracking them.
