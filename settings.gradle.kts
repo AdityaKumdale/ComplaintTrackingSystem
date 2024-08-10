@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ComplaintTrackingSystem"
 include(":app")
- 
+include(":core")
+include(":core:designsystem")

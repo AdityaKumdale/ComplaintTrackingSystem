@@ -13,7 +13,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.complainttrackingsystem"
+        applicationId = "com.cts.complainttrackingsystem"
 
         minSdk = 24
         targetSdk = 34
